@@ -9,5 +9,26 @@
 import UIKit
 
 class TimelineViewController: UIViewController {
-  // My code goes here
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    print("Timeline view controller")
+    
+    self.tabBarController?.delegate = self
+  }
+  
+}
+
+//MARK: Tab Bar Delegate
+
+extension TimelineViewController: UITabBarControllerDelegate {
+  func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+    print("uh oh!")
+    if (viewController is PhotoViewController) {
+      print("Take photo")
+      return false
+    }
+    return true
+  }
 }
