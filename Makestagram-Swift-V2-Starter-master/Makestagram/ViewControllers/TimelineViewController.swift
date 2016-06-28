@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class TimelineViewController: UIViewController {
   
@@ -35,7 +36,18 @@ extension TimelineViewController: UITabBarControllerDelegate {
   func takePhoto(){
     // instantiate photo taking class, provide callback for when photo is selected
     photoTakingHelper = PhotoTakingHelper(viewController: self.tabBarController!) { (image: UIImage?) in
-      print("received a callback")
+      if let image = image{
+        //convert the image into something usable by parse
+        let convertedImage = UIImageJPEGRepresentation(image, 0.8)!
+        let parseImage = PFFile(name: "image.jpg", data: convertedImage)
+        
+        let post = PFObject(className: "Post")
+        post["user"] = PFUser.currentUser()
+        post["imageFile"] = parseImage
+        post.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+          print("Post has been saved.")
+        }
+      }
     }
 
   }
