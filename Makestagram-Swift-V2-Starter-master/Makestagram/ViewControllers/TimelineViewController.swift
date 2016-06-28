@@ -37,16 +37,9 @@ extension TimelineViewController: UITabBarControllerDelegate {
     // instantiate photo taking class, provide callback for when photo is selected
     photoTakingHelper = PhotoTakingHelper(viewController: self.tabBarController!) { (image: UIImage?) in
       if let image = image{
-        //convert the image into something usable by parse
-        let convertedImage = UIImageJPEGRepresentation(image, 0.8)!
-        let parseImage = PFFile(name: "image.jpg", data: convertedImage)
-        
-        let post = PFObject(className: "Post")
-        post["user"] = PFUser.currentUser()
-        post["imageFile"] = parseImage
-        post.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-          print("Post has been saved.")
-        }
+        let post = Post()
+        post.image = image
+        post.uploadPost()
       }
     }
 
