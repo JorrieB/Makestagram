@@ -31,8 +31,7 @@ class PhotoTakingHelper: NSObject {
     let alertController = UIAlertController(title: nil, message: "Where do you want to get your picture from?", preferredStyle: .ActionSheet)
     
     let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel){(action) in
-      print("this is not broken")
-      
+      print("Cancel action")
     }
     alertController.addAction(cancelAction)
     

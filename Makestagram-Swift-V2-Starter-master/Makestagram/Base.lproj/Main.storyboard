@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Friend Search View Controller-->
@@ -58,11 +59,39 @@
                     <view key="view" contentMode="scaleToFill" id="f7g-d3-ZHg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kjA-92-KV9">
+                                <rect key="frame" x="20" y="20" width="560" height="531"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="320" id="Tfd-Mt-TZL">
+                                        <rect key="frame" x="0.0" y="28" width="560" height="320"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tfd-Mt-TZL" id="gha-Se-93w">
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="319.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vrt-rV-YLi" id="YPO-Uf-LjA"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8ZY-x8-Zuf" firstAttribute="top" secondItem="kjA-92-KV9" secondAttribute="bottom" id="8Fu-Ox-gsy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kjA-92-KV9" secondAttribute="trailing" id="dVo-SC-nEM"/>
+                            <constraint firstItem="kjA-92-KV9" firstAttribute="top" secondItem="Iys-e2-PcC" secondAttribute="bottom" id="gCz-Lw-Wv8"/>
+                            <constraint firstItem="kjA-92-KV9" firstAttribute="leading" secondItem="f7g-d3-ZHg" secondAttribute="leadingMargin" id="lb3-X7-K8P"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="home" id="xbx-qj-316">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="tableView" destination="kjA-92-KV9" id="AYY-tM-k12"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MD5-QJ-CKw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
